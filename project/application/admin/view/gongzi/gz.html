@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="icon" href="favicon.ico" type="image/x-icon"/>
+<title>万达公司资产管理系统</title>
+
+<!-- Bootstrap Core and vandor -->
+<link rel="stylesheet" href="https://www.jq22.com/jquery/bootstrap-4.2.1.css">
+<link rel="stylesheet" href="__PUBLIC__/admin/assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css">
+<link rel="stylesheet" href="__PUBLIC__/admin/assets/plugins/dropify/css/dropify.min.css">
+<link rel="stylesheet" href="__PUBLIC__/admin/assets/plugins/summernote/dist/summernote.css"/>
+
+<!-- Core css -->
+<link rel="stylesheet" href="__PUBLIC__/admin/assets/css/style.min.css"/>
+    <style>
+        .page{
+            left: 348px;
+            width: calc(100% - 417px);
+        }
+        .form-control{
+            width: 1050%;
+        }
+    </style>
+</head>
+
+<body class="font-muli theme-cyan gradient">
+
+<!-- Page Loader -->
+<div class="page-loader-wrapper">
+    <div class="loader">
+    </div>
+</div>
+
+<div id="main_content">
+    <!-- Start Main top header -->
+    <div id="header_top" class="header_top">
+        <div class="container">
+            <div class="hleft">
+                <a class="header-brand" href=""><i class="fa fa-graduation-cap brand-logo"></i></a>
+                <div class="dropdown">
+                    <a href="javascript:void(0)" class="nav-link icon menu_toggle"><i class="fe fe-align-center"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Start Quick menu with more functio -->
+
+    <!-- Start Main leftbar navigation -->
+    <div id="left-sidebar" class="sidebar">
+        <h6 class="brand-name">万达公司资产管理系统<a href="javascript:void(0)" class="menu_option float-right"><i class="icon-grid font-16" data-toggle="tooltip" data-placement="left" title="Grid & List Toggle"></i></a></h6>
+        <ul class="nav nav-tabs">
+            <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#menu-uni">资产管理</a></li>
+            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#menu-admin">资产清算</a></li>
+        </ul>
+        <div class="tab-content mt-3">
+            <div class="tab-pane fade show active" id="menu-uni" role="tabpanel">
+                <nav class="sidebar-nav">
+                    <ul class="metismenu">
+                        <li ><a href="{:url('Admin/index')}"><i class="fa fa-dashboard"></i><span>公司共用资产价格表</span></a></li>
+                        <!--Professors-->
+                        <li class="active"><a href="{:url('Gongzi/gz')}"><i class="fa fa-black-tie"></i><span>公司管理部门工资表</span></a></li>
+                        <!--Staf-->
+                        <li><a href="{:url('Diannao/dn')}"><i class="fa fa-user-circle-o"></i><span>公司电脑资产管理表</span></a></li>
+                        <!--Students-->
+                        <li><a href="{:url('Zuoyi/zuoyi')}"><i class="fa fa-users"></i><span>公司桌椅椅清单管理表</span></a></li>
+
+
+
+
+                    </ul>
+                </nav>
+            </div>
+            <div class="tab-pane fade" id="menu-admin" role="tabpanel">
+                <nav class="sidebar-nav">
+                    <ul class="metismenu">
+                        <li><a href="javascript:;"><i class="fa fa-credit-card"></i><span>敬请期待</span></a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!-- Start project content area -->
+    <div class="page">
+        <!-- Start Page header -->
+
+        <!-- Start Page title and tab -->
+        <div class="section-body">
+            <div class="container-fluid">
+                <div class="d-flex justify-content-between align-items-center ">
+
+                    <ul class="nav nav-tabs page-header-tab">
+
+                        <li class="nav-item"><h1><a class="nav-link"data-toggle="tab" href="#pro-add">点击此处增加新的职员</a></h1></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="section-body mt-4">
+            <div class="container-fluid">
+                <div class="tab-content">
+                    <div class="tab-pane active" id="pro-all">
+                        <div class="table-responsive">
+                            <table class="table table-hover table-vcenter table_custom text-nowrap spacing5 border-style mb-0">
+
+                                <tbody>
+
+                                <tr>
+                                    <th></th>
+                                    <th>姓名</th>
+                                    <th>入职年份</th>
+                                    <th>工资(单位:元)</th>
+                                    <th>联系电话</th>
+                                    <th>公司职位</th>
+                                    <th>管理操作</th>
+                                </tr>
+                                {foreach $arr as $k=>$v}
+                                    <tr>
+                                        <td class="w60">
+                                            <div class="avatar avatar-pink" data-toggle="tooltip" data-placement="top" title="" data-original-title="Avatar Name">
+                                                <span>WD</span>
+                                            </div>
+                                        </td>
+                                        <td><div class="font-15">{$v.name}</div></td>
+                                        <td><span>{$v.ruzhi}</span></td>
+                                        <td><span class="text-muted">{$v.gongzi}</span></td>
+                                        <td>{$v.phone}</td>
+                                        <td><strong>{$v.zhiwei}</strong></td>
+                                        <td>
+                                            <a href="{:url('gongzi/gengxin',['id'=>$v.id])}"><button type="button" class="btn btn-icon btn-sm" title="Edit"><i class="fa fa-edit"></i></button></a>
+                                            <a href="{:url('gongzi/sc',['id'=>$v.id])}" ><button type="button" class="btn btn-icon btn-sm js-sweetalert" title="Delete" data-type="confirm"><i class="fa fa-trash-o text-danger"></i></button></a>
+                                        </td>
+                                    </tr>
+                                    {/foreach}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="pro-add">
+                        <div class="row clearfix">
+                            <div class="col-lg-8 col-md-12 col-sm-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h3 class="card-title">增加新职员</h3>
+                                        <div class="card-options ">
+                                            <a href="#" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
+                                            <a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row clearfix">
+                                            <form action="{:url('Gongzi/zj')}" method="post">
+                                            <div class="col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label>姓名</label>
+                                                    <input type="text" class="form-control" name="username"  placeholder="在这里添加职员姓名">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label>入职年份</label>
+                                                    <input type="text" class="form-control" name="ruzhi" placeholder="在这里填入入职年份">
+                                                </div>
+                                            </div>
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label>具体工资</label>
+                                                        <input type="text" class="form-control" name="gongzi" placeholder="在这里填入具体工资">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label>联系方式</label>
+                                                        <input type="text" class="form-control" name="phone" placeholder="在这里填入联系方式">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label>公司职位</label>
+                                                        <input type="text" class="form-control" name="zhiwei" placeholder="在这里填入公司职位">
+                                                    </div>
+                                                </div>
+                                            <div class="col-sm-12">
+                                                <button type="submit" class="btn btn-primary">添加职员</button>
+                                            </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Start main footer -->
+        <div class="section-body">
+            <footer class="footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            Copyright © 2019 <a href="https://themeforest.net/user/puffintheme/portfolio">PuffinTheme</a>.
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>    
+</div>
+
+<!-- Start Main project js, jQuery, Bootstrap -->
+<script src="__PUBLIC__/admin/assets/bundles/lib.vendor.bundle.js"></script>
+
+<!-- Start Plugin Js -->
+<script src="__PUBLIC__/admin/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+<script src="__PUBLIC__/admin/assets/plugins/dropify/js/dropify.min.js"></script>
+<script src="__PUBLIC__/admin/assets/bundles/summernote.bundle.js"></script>
+
+<!-- Start project main js  and page js -->
+<script src="__PUBLIC__/admin/assets/js/core.js"></script>
+<script src="__PUBLIC__/adminassets/js/form/dropify.js"></script>
+<script src="__PUBLIC__/adminassets/js/page/summernote.js"></script>
+</body>
+</html>
